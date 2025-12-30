@@ -39,7 +39,7 @@ def register(request):
         form=RegisterationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('login page')
         else:
             return render(request,'register.html',{'form':form})
     form=RegisterationForm()
