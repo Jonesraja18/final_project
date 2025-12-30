@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+</head>
+<body>
+    {% extends "home.html" %}
+    {% comment %} {% for i in articles %}
+        <h1>{{i.title}}</h1>
+    
+    {% endfor %} {% endcomment %}
+
+    {% block content %}
+    <h1 style="color:red">Category - {{category.category_name}}</h1>
+
+    {% if articles %}
+    {% for i in articles %}
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image: url({{i.image.url}});background-blend-mode: overlay;background-size:cover; width: 100%; height:50vh;" >
+      <div class="col-md-8 px-0">
+        <h1 class="display-4 font-italic"><a href="{% url "single article" i.slug %}" style="color:white ;text-decoration:none;">{{i.title}}</a></h1>
+        <p class="lead my-3">{{i.short_description |truncatewords:25}}.</p>
+        
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No Ariticles are available...</p>
+    {% endif %}
+    {% endblock content %}
+</body>
+</html>
